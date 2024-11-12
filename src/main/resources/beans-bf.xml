@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 定义了一个bean，采用无参构造 -->
+<!--    <bean id="dog" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Dog" />-->
+
+    <bean id="dog" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Dog" >
+        <constructor-arg value="5" type="int"/>
+    </bean>
+
+
+    <!-- 定义学生Bean -->
+    <bean id="student" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Student">
+        <!-- 设置 ID 和 Name 属性 -->
+        <property name="id" value="1" />
+        <property name="name" value="张三" />
+
+        <!-- List 属性 - courses -->
+        <property name="courses">
+            <list>
+                <value>Java</value>
+                <value>Spring</value>
+            </list>
+        </property>
+
+        <!-- Map 属性 - scores -->
+        <property name="scores">
+            <map>
+                <entry key="Java" value="78.5" />
+                <entry key="Spring" value="90.5" />
+            </map>
+        </property>
+
+        <!-- Properties 属性 - health -->
+        <property name="health">
+            <props>
+                <prop key="身高">183</prop>
+                <prop key="体重">86</prop>
+                <prop key="血压">131/79</prop>
+            </props>
+        </property>
+
+        <!-- Set 属性 - items -->
+        <property name="items">
+            <set>
+                <value>电脑</value>
+                <props>
+                    <prop key="型号">111222</prop>
+                    <prop key="学校分布">京华</prop>
+                    <prop key="学号">T4</prop>
+                    <prop key="座位">R2-C8</prop>
+                </props>
+                <list>
+                    <value>笔记本</value>
+                    <value>图书</value>
+                    <set>
+                        <value>钢笔</value>
+                        <value>铅笔</value>
+                    </set>
+                </list>
+            </set>
+        </property>
+    </bean>
+
+
+
+</beans>

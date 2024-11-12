@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="jf" class="javax.swing.JFrame">
+        <constructor-arg value="我的窗口"/>
+    </bean>
+
+<!--    <bean id="dog" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Dog">-->
+<!--        <constructor-arg value="3" type="int"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="dog" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Dog">-->
+<!--        <constructor-arg value="5" type="int"/>-->
+<!--    </bean>-->
+
+    <!-- 定义多个别名 -->
+<!--    <alias name="dog" alias="wangcai"/>-->
+<!--    <alias name="dog" alias="/dahuang"/>-->
+<!--    <alias name="dog" alias="wangwang"/>-->
+<!--    <alias name="dog" alias="xiaohei"/>-->
+
+<!--    <bean id="dog" name="wangcai,/dahuang,wangwang,xiaohei" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Dog">-->
+<!--        <constructor-arg value="5" type="int"/>-->
+<!--        <property name="name" value="大黄"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="dog" name="wangcai,/dahuang,wangwang,xiaohei" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Dog">-->
+<!--        <constructor-arg value="5" type="int"/>-->
+<!--        <property name="name" value="大黄"/>-->
+<!--    </bean>-->
+
+    <!-- 配置 UserDao Bean -->
+    <bean id="userDao" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.dao.UserDaoImpl" />
+
+    <!-- 配置 UserServiceFactory Bean -->
+    <bean id="userServiceFactory" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.service.UserServiceFactory" />
+
+    <!-- 使用 factory-bean 和 factory-method 配置 UserService -->
+    <bean id="userService" factory-bean="userServiceFactory" factory-method="getUserService">
+        <constructor-arg ref="userDao"/>
+    </bean>
+
+    <!-- 抽象模板Bean，不会创建实例 -->
+    <bean id="dogcatTemplate" abstract="true">
+        <property name="name" value="大黄"/>
+        <property name="age" value="3"/>
+        <property name="current" value="2018/10/6"/>
+    </bean>
+
+    <!-- Dog Bean，继承 dogcatTemplate -->
+    <bean id="dog" name="wangcai,/dahuang,wangwang,xiaohei"
+          class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Dog"
+          parent="dogcatTemplate">
+        <property name="bark" value="汪，汪"/>
+        <constructor-arg value="5" type="int"/>
+    </bean>
+
+    <!-- Cat Bean，继承 dogcatTemplate -->
+    <bean id="cat" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Cat" parent="dogcatTemplate">
+        <property name="bark" value="喵~~喵~~"/>
+        <constructor-arg value="5" type="int"/>
+    </bean>
+
+    <bean id="getField" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.factory.GetFieldFactoryBean">
+        <property name="field" value="out" />
+        <property name="targetClass" value="java.lang.System" />
+    </bean>
+
+    <bean id="beanId" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.aware.GetBeanId">
+
+    </bean>
+
+
+
+
+
+</beans>

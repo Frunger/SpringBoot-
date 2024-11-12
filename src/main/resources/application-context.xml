@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 配置UserDao的实现类 -->
+    <bean id="userDao" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.dao.UserDaoImpl" />
+
+<!--    <bean id="userService" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.service.UserServiceImpl">-->
+<!--            <property name="userDao" ref="userDao"/>-->
+<!--    </bean>-->
+
+    <bean id="userService" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.service.UserServiceImpl">
+        <constructor-arg name="userDao" ref="userDao"/>
+<!--        <property name="userDao" ref="userDao" /> 嵌套引用-->
+    </bean>
+
+    <bean id="sdf" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy年MM月dd日"/>
+    </bean>
+
+    <!-- 定义 Car bean，id 为 car2 -->
+    <bean id="car2" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Car">
+        <!-- car的其他属性可以在这里设置 -->
+    </bean>
+
+    <!-- 定义 Person bean，并注入 car2 -->
+    <bean id="person" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Person">
+        <property name="car" ref="car2"/>
+    </bean>
+
+    <!-- 定义 person2 bean，用构造函数传参 -->
+    <bean id="person2" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Person">
+        <constructor-arg value="Jerry"/>
+        <constructor-arg value="25"/>
+
+    </bean>
+
+
+
+<!--    &lt;!&ndash; 定义 person3 bean，使用 car 作为构造函数参数 &ndash;&gt;-->
+<!--    <bean id="person3" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Person">-->
+<!--        <constructor-arg ref="car"/>-->
+<!--    </bean>-->
+    <!-- Address Bean -->
+    <bean id="address" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Address">
+        <constructor-arg value="上海"/>
+        <constructor-arg value="北京路"/>
+    </bean>
+
+    <!-- Car Bean -->
+    <bean id="car" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Car">
+        <constructor-arg value="Toyota"/>
+        <constructor-arg value="20000"/>
+        <property name="maxSpeed" value="250"/>
+    </bean>
+
+    <!-- Driver Bean -->
+    <bean id="personDriver" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Driver">
+        <constructor-arg value="Fissy"/>
+        <constructor-arg ref="address"/>
+        <constructor-arg ref="car"/>
+    </bean>
+
+    <bean id="date" class="java.util.Date" scope="prototype" />
+
+    <!-- 定义一个bean，带有构造器和属性注入 -->
+    <bean id="dog" name="wangcai,/dahuang,wangwang,xiaohei" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Dog">
+        <!-- 使用构造器注入 int 类型 age -->
+        <constructor-arg value="5" type="int"/>
+
+        <!-- 使用 p-namespace 设置 name 和 current 属性 -->
+        <property name="name" value="大黄" />
+        <property name="current" value="2018/10/05" />
+    </bean>
+
+
+</beans>
