@@ -11,19 +11,20 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao= new UserDaoImpl();;
+    private UserDao userDao = new UserDaoImpl();
+    ;
 
     // 修改构造函数，使其接收 UserDao 参数
     public void setUserDao(UserDao userDao) {
-         this.userDao = userDao;
-     }
-     public UserServiceImpl () {
-
-     }
-
-    public UserServiceImpl (UserDao userDao) {
         this.userDao = userDao;
     }
+
+    public UserServiceImpl() {}
+
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     @Override
     public User getUserById(Long id) {
         return userDao.selectUserById(id);

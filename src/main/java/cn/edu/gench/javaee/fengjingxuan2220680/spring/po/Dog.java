@@ -3,14 +3,23 @@ package cn.edu.gench.javaee.fengjingxuan2220680.spring.po;
 import java.util.Date;
 
 public class Dog {
-    private String name;
+    public Dog(){
+                System.out.println("构建dog,无参数");
+    }
+    public Dog(String name){
+                System.out.println("构建dog,一个name参数"+name);
+    }
+    public Dog(int age){
+                System.out.println("构建dog,一个age参数"+age);
+    }
+private String name;
     private int age;
     private Date current;
     private String bark;
     // 构造函数
-    public Dog(int age) {
-        this.age = age;
-    }
+//    public Dog(int age) {
+//        this.age = age;
+//    }
 
     // name 属性的 getter 和 setter
     public String getName() {

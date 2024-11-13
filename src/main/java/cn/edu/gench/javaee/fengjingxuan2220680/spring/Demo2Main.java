@@ -19,6 +19,8 @@ public class Demo2Main {
 //        UserService us = ctx.getBean("userService", UserService.class);
 //
 //        User user = us.getUserById(1L);
+
+
         Student student = (Student) ctx.getBean("student");
         System.out.println(student);
 

@@ -22,5 +22,5 @@ public class Demo4Main {
         System.out.println(dog3.getName());
         System.out.println(dog4.getName());
         System.out.println(dog1 == dog4);  // 应该输出 true
-    }
+  }
 }

@@ -27,12 +27,18 @@ public class DemoMain {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
         // 2. 获取 UserService Bean
         UserService us = ctx.getBean("userService", UserService.class);  // 确保这里的类型是 UserService
+
+//        Date date = ctx.getBean("date", Date.class);
+
         // 获取 SimpleDateFormat Bean
         SimpleDateFormat date = ctx.getBean("sdf", SimpleDateFormat.class);
 
         Driver driver = ctx.getBean("personDriver", Driver.class);
         // 3. 调用方法
         User user = us.getUserById(1L);
+
+//        System.out.println(date);
+
         // 使用 SimpleDateFormat 格式化当前日期
         System.out.println(date.format(new Date()));
 

@@ -20,6 +20,7 @@
 
     <bean id="dog" class="cn.edu.gench.javaee.fengjingxuan2220680.spring.po.Dog" >
         <constructor-arg value="5" type="int"/>
+
     </bean>
 
 
